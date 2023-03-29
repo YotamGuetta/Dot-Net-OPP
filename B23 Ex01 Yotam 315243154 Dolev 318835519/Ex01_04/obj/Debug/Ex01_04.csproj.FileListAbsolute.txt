@@ -1,0 +1,2 @@
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.csproj.AssemblyReference.cache
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.csproj.CoreCompileInputs.cache
