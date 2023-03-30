@@ -8,11 +8,12 @@ namespace Ex01_02
         static void Main()
         {
             StringBuilder SB = new StringBuilder();
-            printDiamondForBegginers(SB, 5, 0);
+            PrintDiamond(SB, 5, 0);
             Console.WriteLine(SB.ToString());
+            Console.WriteLine(" ");
         }
 
-        static void printDiamondForBegginers(StringBuilder i_SB, int i_numOfRows, int i_currenRow)
+       public static void PrintDiamond(StringBuilder i_SB, int i_numOfRows, int i_currenRow)
         {
             if (i_numOfRows < 1)
             {
@@ -22,7 +23,7 @@ namespace Ex01_02
             i_SB.Append(' ', i_numOfRows - 1);
             i_SB.Append('*', 2 * i_currenRow + 1);
             i_SB.AppendLine();
-            printDiamond(sb, i_numOfRows - 1, i_currenRow + 1);
+            PrintDiamond(i_SB, i_numOfRows - 1, i_currenRow + 1);
             if (i_currenRow != 0)
             {
                 i_SB.Append(' ', i_numOfRows);
@@ -32,4 +33,4 @@ namespace Ex01_02
         }
     }
 }
-}
+
