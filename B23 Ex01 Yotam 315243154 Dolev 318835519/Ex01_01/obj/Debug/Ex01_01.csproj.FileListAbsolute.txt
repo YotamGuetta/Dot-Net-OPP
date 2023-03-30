@@ -1,0 +1,2 @@
+C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_01\obj\Debug\Ex01_01.csproj.AssemblyReference.cache
+C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_01\obj\Debug\Ex01_01.csproj.CoreCompileInputs.cache
