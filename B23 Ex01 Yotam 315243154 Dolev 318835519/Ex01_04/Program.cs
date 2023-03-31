@@ -12,6 +12,8 @@
 
         public static void Main()
         {
+            Console.WriteLine("Enter a string with 6 english letters or a 6 digits number: ");
+
             string userInput = Console.ReadLine();
 
             if (!InsertStringToDataMembers(userInput))

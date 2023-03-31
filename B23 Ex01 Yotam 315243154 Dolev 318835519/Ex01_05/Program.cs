@@ -7,19 +7,19 @@
         private const int k_DesiredLength = 6;
         private const bool k_ValidStringFormat = true;
         private static int m_StringAsANumber;
-        
+
         public static void Main()
         {
-            while (true)
+            string userInput;
+            do
             {
-                string userInput;
-                do
-                {
-                    userInput = Console.ReadLine();
-                }
-                while (!InsertStringToDataMembers(userInput));
+                Console.WriteLine("Enter a 6 digits number: ");
 
-                Console.WriteLine(string.Format(
+                userInput = Console.ReadLine();
+            }
+            while (!InsertStringToDataMembers(userInput));
+
+            Console.WriteLine(string.Format(
 @"The number of digits bigger then the unit's place is: {0}
 The minimum digit is: {1}
 The number of digits dividable by 3 are: {2}
@@ -28,8 +28,8 @@ NumberOfDigitsBiggerThenTheUnitsPlace(),
 MinimumDigit(),
 NumberOfDigitsDividableBy3(),
 DigitsAvrage()));
-            }
         }
+        
 
         private static int NumberOfDigitsBiggerThenTheUnitsPlace()
         {

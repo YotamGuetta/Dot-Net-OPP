@@ -13,3 +13,8 @@ C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר �
 C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.csproj.CoreCompileInputs.cache
 C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.exe
 C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.pdb
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\bin\Debug\Ex01_04.exe.config
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\bin\Debug\Ex01_04.exe
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\bin\Debug\Ex01_04.pdb
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.exe
+C:\Users\yotam\source\repos\C# OPP\C--OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_04\obj\Debug\Ex01_04.pdb
