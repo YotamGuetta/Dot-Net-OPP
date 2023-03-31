@@ -22,7 +22,7 @@ namespace Ex01_01
             {
                 Console.WriteLine("Invalid Input. Try again.");
                 userInput = Console.ReadLine();
-                isValidInput = (userInput.Length != 8) && IsBinaryNumber(userInput);
+                isValidInput = (userInput.Length == 8) && IsBinaryNumber(userInput);
             }
 
             return userInput;
@@ -121,13 +121,11 @@ namespace Ex01_01
                 countNumsDividesByFour++;
             }
 
-            // Check if num2 is divisible by 4
             if (i_decimalNum2 % 4 == 0)
             {
                 countNumsDividesByFour++;
             }
 
-            // Check if num3 is divisible by 4
             if (i_decimalNum3 % 4 == 0)
             {
                 countNumsDividesByFour++;
@@ -140,22 +138,20 @@ namespace Ex01_01
         {
             bool isDescending = true;
 
+            int previosDigit = i_numToCheck % 10;
+            i_numToCheck = i_numToCheck / 10;
+           
+
             while (i_numToCheck > 0 && isDescending)
             {
-                int previosDigit = i_numToCheck % 10;
-                i_numToCheck = i_numToCheck / 10;
                 int currentDigit = i_numToCheck % 10;
-
-                if (previosDigit > currentDigit)
-                {
-                    previosDigit = currentDigit;
-                    currentDigit = i_numToCheck % 10;
-                    i_numToCheck = i_numToCheck / 10;
-                }
-                else
+                if (previosDigit >= currentDigit)
                 {
                     isDescending = false;
                 }
+
+                previosDigit = currentDigit;
+                i_numToCheck = i_numToCheck / 10;
             }
 
             return isDescending;
@@ -190,10 +186,10 @@ namespace Ex01_01
 
             while (i_numToCheck > 0)
             {
-                int currDigit = i_numToCheck % 10; // Extract the last digit of num1
-                i_numToCheck = i_numToCheck / 10; // Remove the last digit from num1
+                int currDigit = i_numToCheck % 10; 
+                i_numToCheck = i_numToCheck / 10; 
 
-                reversedNum = (reversedNum * 10) + currDigit; // Add the current digit to the reversed number
+                reversedNum = (reversedNum * 10) + currDigit; 
             }
 
             return originalNum == reversedNum;

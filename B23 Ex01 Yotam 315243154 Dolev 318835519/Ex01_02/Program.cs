@@ -3,14 +3,13 @@ using System.Text;
 
 namespace Ex01_02
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             StringBuilder SB = new StringBuilder();
             PrintDiamond(SB, 5, 0);
             Console.WriteLine(SB.ToString());
-            Console.WriteLine(" ");
         }
 
        public static void PrintDiamond(StringBuilder i_SB, int i_numOfRows, int i_currenRow)

@@ -1,0 +1,11 @@
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\bin\Debug\Ex01_03.exe.config
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\bin\Debug\Ex01_03.exe
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\bin\Debug\Ex01_03.pdb
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\bin\Debug\Ex01_02.exe
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\bin\Debug\Ex01_02.pdb
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\bin\Debug\Ex01_02.exe.config
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\obj\Debug\Ex01_03.csproj.AssemblyReference.cache
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\obj\Debug\Ex01_03.csproj.CoreCompileInputs.cache
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\obj\Debug\Ex01_03.csproj.CopyComplete
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\obj\Debug\Ex01_03.exe
+C:\Users\dolev\OneDrive\Desktop\דולב - לימודים\שנה ב\סמסטר ב\C#\New folder\Dot-Net-OPP\B23 Ex01 Yotam 315243154 Dolev 318835519\Ex01_03\obj\Debug\Ex01_03.pdb

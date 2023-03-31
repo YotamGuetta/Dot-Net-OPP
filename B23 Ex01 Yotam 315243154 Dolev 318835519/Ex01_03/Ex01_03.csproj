@@ -38,5 +38,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ex01_02\Ex01_02.csproj">
+      <Project>{ceb69157-a44d-4509-ba1a-a4227218513d}</Project>
+      <Name>Ex01_02</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
