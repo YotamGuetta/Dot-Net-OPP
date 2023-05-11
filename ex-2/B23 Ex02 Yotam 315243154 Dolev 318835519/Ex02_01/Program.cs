@@ -8,5 +8,6 @@ namespace Ex02_01
 {
     class Program
     {
+
     }
 }
