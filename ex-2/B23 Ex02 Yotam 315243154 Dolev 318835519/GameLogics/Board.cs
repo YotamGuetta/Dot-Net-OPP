@@ -31,9 +31,10 @@ namespace GameLogics
             return m_board[i_row, i_col] == '\0';
         }
 
-        public void PlaceSymbol(int i_row, int i_col, char i_symbol)
+        public void PlaceSymbol(int i_row, int i_col, char i_symbol) //check if the if needed here or in the UI
         {
-            m_board[i_row, i_col] = i_symbol;
+            if (IsCellEmpty(i_row, i_col))
+                m_board[i_row, i_col] = i_symbol;
         }
 
         public bool IsBoardFull() ///v_?
