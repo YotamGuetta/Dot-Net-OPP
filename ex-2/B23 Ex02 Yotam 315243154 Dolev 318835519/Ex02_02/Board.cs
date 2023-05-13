@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameLogics
+﻿namespace GameLogics
 {
     public class Board
     {
         private char[,] m_board;
-        private int m_size; //static?
+        private int m_boardSize; //static?
 
         public Board(int i_size)
         {
-            this.m_size = i_size;
+            this.m_boardSize = i_size;
             m_board = new char[i_size, i_size];
         }
         public int Size
         {
-            get { return m_size; }
+            get { return m_boardSize; }
         }
 
         public void ClearBoard()
         {
-            m_board = new char[m_size, m_size];
+            m_board = new char[m_boardSize, m_boardSize];
         }
 
         public bool IsCellEmpty(int i_row, int i_col)
@@ -39,9 +33,9 @@ namespace GameLogics
 
         public bool IsBoardFull() ///v_?
         {
-            for (int v_row = 0; v_row < m_size; v_row++)
+            for (int v_row = 0; v_row < m_boardSize; v_row++)
             {
-                for (int v_col = 0; v_col < m_size; v_col++)
+                for (int v_col = 0; v_col < m_boardSize; v_col++)
                 {
                     if (IsCellEmpty(v_row, v_col))
                     {
@@ -54,31 +48,62 @@ namespace GameLogics
 
         public bool HasWinningSequence(char symbol)
         {
-            bool columnSequence = true;
-            bool rowSequence;
-            bool diagonalSequence = true;
-
-            for (int i = 0; i < m_size; i++)
+            for (int i = 0; i < m_boardSize; i++)
             {
-                rowSequence = true;
-                for (int j = 0; j < m_size; j++)
+                bool rowSequence = true;
+                for (int j = 0; j < m_boardSize; j++)
                 {
                     if (m_board[i, j] != symbol)
+                    {
                         rowSequence = false;
+                        break;
+                    }
                 }
-            }
 
-            for (int j = 0; j < m_size; j++)
-            {
-                if (CheckSequence(m_board, 0, j, 1, 0, m_size))
+                if (rowSequence)
                     return true;
             }
 
-            if (CheckSequence(m_board, 0, 0, 1, 1, m_size) ||
-                CheckSequence(m_board, 0, m_size - 1, 1, -1, m_size))
+            for (int i = 0; i < m_boardSize; i++)
+            {
+                bool columnSequence = true;
+                for (int j = 0; j < m_boardSize; j++)
+                {
+                    if (m_board[j, i] != symbol)
+                    {
+                        columnSequence = false;
+                        break;
+                    }
+                }
+
+                if (columnSequence)
+                    return true;
+            }
+
+            bool diagonalSequence = true;
+            for (int i = 0; i < m_boardSize; i++)
+            {
+                if (m_board[i, i] != symbol)
+                {
+                    diagonalSequence = false;
+                    break;
+                }
+            }
+
+            if (diagonalSequence)
                 return true;
 
-            return false;
-        } /// change
+            diagonalSequence = true;
+            for (int i = 0; i < m_boardSize; i++)
+            {
+                if (m_board[i, m_boardSize - 1 - i] != symbol)
+                {
+                    diagonalSequence = false;
+                    break;
+                }
+            }
+
+            return diagonalSequence;
+        }
     }
 }
