@@ -7,14 +7,29 @@ namespace GameLogics
     {
         private Random m_randomRow;
         private Random m_randomColumn;
-
         private Player m_computerPlayer;
 
-        public ComputerPlayer(char i_symbol, string i_playerName)
+        public ComputerPlayer(char i_symbol)
         {
             m_randomRow = new Random();
             m_randomColumn = new Random();
-            m_computerPlayer = new Player(i_symbol, i_playerName);
+            m_computerPlayer = new Player(i_symbol, "Computer");
+        }
+
+        public char Symbol 
+        {
+            get { return m_computerPlayer.Symbol; } 
+        }
+
+        public string Name
+        {
+            get { return m_computerPlayer.Name; }
+        }
+
+        public int Score 
+        {
+            get { return m_computerPlayer.Score; }
+            set { m_computerPlayer.Score = value; } 
         }
 
         public void GetMove(Board i_board, int o_rowPosition, int o_columnPosition)
