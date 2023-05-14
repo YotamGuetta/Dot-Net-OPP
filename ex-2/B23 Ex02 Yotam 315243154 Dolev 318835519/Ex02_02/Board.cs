@@ -33,24 +33,29 @@
 
         public bool IsBoardFull() ///v_?
         {
+            bool isBoardFull = true;
             for (int v_row = 0; v_row < m_boardSize; v_row++)
             {
                 for (int v_col = 0; v_col < m_boardSize; v_col++)
                 {
                     if (IsCellEmpty(v_row, v_col))
                     {
-                        return false;
+                        isBoardFull = false;
                     }
                 }
             }
-            return true;
+            return isBoardFull;
         }
 
         public bool HasWinningSequence(char symbol)
         {
+            bool rowSequence = true, columnSequence = true, mainDiagonalSequence = true, secondaryDiagonalSequence = true;
+
             for (int i = 0; i < m_boardSize; i++)
             {
-                bool rowSequence = true;
+                rowSequence = true;
+                columnSequence = true;
+
                 for (int j = 0; j < m_boardSize; j++)
                 {
                     if (m_board[i, j] != symbol)
@@ -58,52 +63,35 @@
                         rowSequence = false;
                         break;
                     }
-                }
 
-                if (rowSequence)
-                    return true;
-            }
-
-            for (int i = 0; i < m_boardSize; i++)
-            {
-                bool columnSequence = true;
-                for (int j = 0; j < m_boardSize; j++)
-                {
                     if (m_board[j, i] != symbol)
                     {
                         columnSequence = false;
                         break;
                     }
                 }
-
-                if (columnSequence)
-                    return true;
             }
 
-            bool diagonalSequence = true;
+
             for (int i = 0; i < m_boardSize; i++)
             {
                 if (m_board[i, i] != symbol)
                 {
-                    diagonalSequence = false;
+                    mainDiagonalSequence = false;
                     break;
                 }
             }
 
-            if (diagonalSequence)
-                return true;
-
-            diagonalSequence = true;
             for (int i = 0; i < m_boardSize; i++)
             {
                 if (m_board[i, m_boardSize - 1 - i] != symbol)
                 {
-                    diagonalSequence = false;
+                    secondaryDiagonalSequence = false;
                     break;
                 }
             }
 
-            return diagonalSequence;
+            return rowSequence || columnSequence || mainDiagonalSequence || secondaryDiagonalSequence;
         }
     }
 }
