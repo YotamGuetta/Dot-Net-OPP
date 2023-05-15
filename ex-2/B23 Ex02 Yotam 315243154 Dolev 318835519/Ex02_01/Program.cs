@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ex02_01
 {
-    class Program
+    public class Program
     {
+        public static void Main()
+        {
+            BoardUI game = new BoardUI();
+            game.StartGame();
+            Console.ReadLine();
+        }
     }
 }
