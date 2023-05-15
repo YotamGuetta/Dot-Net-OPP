@@ -1,2 +1,0 @@
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\ex-2\B23 Ex02 Yotam 315243154 Dolev 318835519\Ex02_02\obj\Debug\Ex02_02.csproj.AssemblyReference.cache
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\ex-2\B23 Ex02 Yotam 315243154 Dolev 318835519\Ex02_02\obj\Debug\Ex02_02.csproj.CoreCompileInputs.cache
