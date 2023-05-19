@@ -35,5 +35,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InvalidInputException.cs" />
+    <Compile Include="InvalidLogicException.cs" />
+    <Compile Include="UI.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
