@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Ex03_UI
 {
-    public class InvalidInputException : Exception
+    public class Program
     {
-        public InvalidInputException(string message) : base(message)
+        public static void Main(string[] args)
         {
+            UI v_ui = new UI();
+            v_ui.Menu();
         }
     }
 }
