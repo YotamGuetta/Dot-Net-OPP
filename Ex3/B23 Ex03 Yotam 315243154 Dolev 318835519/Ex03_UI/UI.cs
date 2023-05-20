@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using ValueOutOfRangeException;
 using VehicleManager;
 using Vehicle;
+using Factory;
 
 namespace Ex03_UI
 {
@@ -14,90 +16,139 @@ namespace Ex03_UI
             m_vehicleManager = new VehicleManager();
         }
 
-        public void PrintMenu()
+        public void Menu()
         {
-            bool running = true;
-            while (running)
+            bool systemIsRunning = true;
+
+            Console.WriteLine("~~ Welcome to the garage! ~~");
+            while (systemIsRunning)
             {
                 Console.Clear();
                 Console.WriteLine("Please choose one option (1-8) - ");
                 Console.WriteLine("1) Add new vehicle");
-                Console.WriteLine("2) Displaying the list of all vehicles");
+                Console.WriteLine("2) Display the list of all vehicles");
                 Console.WriteLine("3) Change vehicle mode");
-                Console.WriteLine("4) Air volume in wheels");
-                Console.WriteLine("5) Refuel car");
+                Console.WriteLine("4) Inflate air volume in wheels");
+                Console.WriteLine("5) Refuel vehicle");
                 Console.WriteLine("6) Charge electric vehicle");
-                Console.WriteLine("7) Displaying complete vehicle data");
+                Console.WriteLine("7) Display all of the vehicle data");
                 Console.WriteLine("8) Exit");
 
-                string choice = Console.ReadLine();
+                string chosenFunction = Console.ReadLine();
 
-                
-                switch (choice)
+                try
                 {
-                    case "1":
-                        AddNewVehicle();
-                        break;
-                    case "2":
-                        DisplayAllVehicles();
-                        break;
-                    case "3":
-                        ChangeVehicleStatus();
-                        break;
-                    case "4":
-                        InflateTirePressure();
-                        break;
-                    case "5":
-                        RefuelVehicle();
-                        break;
-                    case "6":
-                        ChargeElectricVehicle();
-                        break;
-                    case "7":
-                        DisplayVehicleDetails();
-                        break;
-                    case "8":
-                        running = false;
-                        break;
-                    default:
-                        throw new InvalidInputException("Invalid menu choice.");
+                    systemIsRunning = activatedChosenFunction(chosenFunction);
                 }
 
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey();
+                catch (ArgumentException i_ArgumentException)
+                {
+                    Console.WriteLine(i_ArgumentException.Message);
+                }
+
+                catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+                {
+                    Console.WriteLine(i_ValueOutOfRangeException.Message);
+                }
+
+                finally
+                {
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+                }
             }
         }
+       
+        private bool activatedChosenFunction(string i_chosenFunction)
+        {
+            bool systemIsRunning = true;
 
-        private void AddNewVehicle() //not good need to think about solution
+            switch (i_chosenFunction)
+            {
+                case "1":
+                    addNewVehicle();
+                    break;
+                case "2":
+                    displayAllVehicles();
+                    break;
+                case "3":
+                    changeVehicleStatus();
+                    break;
+                case "4":
+                    inflateTirePressure();
+                    break;
+                case "5":
+                    refuelVehicle();
+                    break;
+                case "6":
+                    chargeElectricVehicle();
+                    break;
+                case "7":
+                    displayVehicleDetails();
+                    break;
+                case "8":
+                    systemIsRunning = false;
+                    break;
+                default:
+                    throw new FormatException("Invalid menu choice.");
+            }
+            return systemIsRunning;
+        }
+
+        private void addNewVehicle()
         {
             Console.Clear();
             Console.Write("Please enter the license number of the vehicle - ");
             string licenseNumber = Console.ReadLine();
 
-            if (i_vehicles.Exists(v => v.LicenseNumber == licenseNumber))
+            Vehicle isVehicleExist = m_vehicleManager.GetVehicleByLicensePlate(licenseNumber);
+
+            if (isVehicleExist == null)
             {
-                Vehicle existingVehicle = i_vehicles.Find(v => v.LicenseNumber == licenseNumber);
-                existingVehicle.Status = "under repair";
-                Console.WriteLine("The vehicle already exists in the system, the vehicle status has been updated to under repair");
+                isVehicleExist.Status = "Under repair";
+                Console.WriteLine("The vehicle already exists in the system, its status has been updated to under repair");
             }
 
             else
             {
                 Console.Write("Please enter the vehicle type");
-                string type = Console.ReadLine();
+                string vehicleTypeString = Console.ReadLine();
 
-                try
+                Type vehicleType = Type.GetType(vehicleTypeString);
+                if (vehicleType == null)
                 {
-                    Vehicle newVehicle = new Vehicle(licenseNumber, type);
-                    i_vehicles.Add(newVehicle);
+                    throw new ArgumentException("Invalid vehicle type");
                 }
-                catch (ArgumentException i_ArgumentException)
+
+                else
                 {
-                    Console.WriteLine(i_ArgumentException.Message);
+                    Vehicle newVehicle = (Vehicle)Factory.createNewVehicle(vehicleType);
+
+                    foreach (var property in newVehicle.GetType().GetProperties())
+                    {
+                        Console.Write("Please enter the {0} - ", property.Name);
+                        string value = Console.ReadLine();
+
+                        try
+                        {
+                            property.SetValue(newVehicle, Convert.ChangeType(value, property.PropertyType));
+                        }
+
+                        catch (ArgumentException i_ArgumentException)
+                        {
+                            Console.WriteLine(i_ArgumentException.Message);
+                        }
+
+                        catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+                        {
+                            Console.WriteLine(i_ValueOutOfRangeException.Message);
+                        }
+                    }
                 }
             }
         } 
-        private void DisplayAllVehicles()
+
+        private void displayAllVehicles()
         {
             List<Vehicle> vehicles = m_vehicleManager.GetAllVehicles();
 
@@ -133,14 +184,119 @@ namespace Ex03_UI
                         filteredVehicles = vehicles;
                         break;
                     default:
-                        throw new InvalidInputException("Invalid menu choice.");
+                        throw new FormatException("Invalid menu choice input");
                 }
 
                 Console.WriteLine("The list - ");
                 foreach (Vehicle vehicle in filteredVehicles)
                 {
-                    Console.WriteLine($"License Number- {vehicle.LicenseNumber}");
+                    Console.WriteLine("License Number- {0}", vehicle.LicenseNumber);
                 }
+            }
+        }
+
+        private void changeVehicleStatus()
+        {
+            Console.WriteLine("Enter the license plate number of the vehicle - ");
+            string licensePlate = Console.ReadLine();
+
+            Console.WriteLine("Enter the new status - ");
+            Console.WriteLine("1. Under repair");
+            Console.WriteLine("2. Repaired");
+            Console.WriteLine("3. Paid");
+
+            if (!int.TryParse(Console.ReadLine(), out int statusOption))
+            {
+                throw new FormatException("Invalid menu choice input");
+            }
+
+            try
+            {
+                m_vehicleManager.ChangeVehicleStatus(licensePlate, (VehicleStatus)statusOption); //if there is enum for the status, if not change
+            }
+
+            catch (ArgumentException i_ArgumentException)
+            {
+                Console.WriteLine(i_ArgumentException.Message);
+            }
+        }
+
+        private void inflateTirePressure()
+        {
+            Console.WriteLine("Enter the license plate number of the vehicle - ");
+            string licensePlate = Console.ReadLine();
+
+            m_vehicleManager.InflateTires(licensePlate);
+        }
+
+        private void refuelVehicle()
+        {
+            Console.WriteLine("Enter the license plate number of the vehicle - ");
+            string licensePlate = Console.ReadLine();
+
+            Console.WriteLine("Enter the amount of fuel to refuel (in liters) - ");
+            if (!float.TryParse(Console.ReadLine(), out float fuelAmount))
+            {
+                throw new FormatException("Invalid fuel amount input");
+            }
+
+            try
+            {
+                m_vehicleManager.RefuelVehicle(licensePlate, fuelAmount);
+            }
+
+            catch (ArgumentException i_ArgumentException)
+            {
+                Console.WriteLine(i_ArgumentException.Message);
+            }
+
+            catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+            {
+                Console.WriteLine(i_ValueOutOfRangeException.Message);
+            }
+        }
+
+        private void chargeElectricVehicle()
+        {
+            Console.WriteLine("Enter the license plate number of the vehicle -");
+            string licensePlate = Console.ReadLine();
+
+            Console.WriteLine("Enter the duration of charging (in minutes) - ");
+            if (!int.TryParse(Console.ReadLine(), out int chargingTime))
+            {
+                throw new FormatException("Invalid fuel amount input");
+            }
+
+            try
+            {
+                m_vehicleManager.ChargeElectricVehicle(licensePlate, chargingTime);
+            }
+
+            catch (ArgumentException i_ArgumentException)
+            {
+                Console.WriteLine(i_ArgumentException.Message);
+            }
+
+            catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+            {
+                Console.WriteLine(i_ValueOutOfRangeException.Message);
+            }
+        }
+
+        private void displayVehicleDetails()
+        {
+            Console.WriteLine("Enter the license plate number of the vehicle - ");
+            string licensePlate = Console.ReadLine();
+
+            Vehicle vehicleToPrint = m_vehicleManager.GetVehicleByLicensePlate(licensePlate);
+
+            foreach (var property in vehicleToPrint.GetType().GetProperties())
+            {
+                string propertyName = property.Name;
+
+                var propertyValue = property.GetValue(vehicleToPrint);
+
+                Console.WriteLine("{0} - {1}", propertyName, propertyValue);
             }
         }
     }
