@@ -35,5 +35,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="UI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ex03_Engine\Ex03_Engine.csproj">
+      <Project>{c42c69f7-452a-4bcc-aa97-597b48b2eb29}</Project>
+      <Name>Ex03_Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
