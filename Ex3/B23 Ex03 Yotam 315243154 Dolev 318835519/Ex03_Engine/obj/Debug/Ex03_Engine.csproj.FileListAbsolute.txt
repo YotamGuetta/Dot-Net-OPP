@@ -1,7 +1,0 @@
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\obj\Debug\Ex03_Engine.csproj.AssemblyReference.cache
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\obj\Debug\Ex03_Engine.csproj.CoreCompileInputs.cache
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\bin\Debug\Ex03_Engine.exe.config
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\bin\Debug\Ex03_Engine.exe
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\bin\Debug\Ex03_Engine.pdb
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\obj\Debug\Ex03_Engine.exe
-C:\Users\yotam\Documents\GitHub\Dot-Net-OPP\Ex3\B23 Ex03 Yotam 315243154 Dolev 318835519\Ex03_Engine\obj\Debug\Ex03_Engine.pdb
