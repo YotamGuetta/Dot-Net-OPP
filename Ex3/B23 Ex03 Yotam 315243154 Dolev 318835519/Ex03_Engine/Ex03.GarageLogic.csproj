@@ -35,5 +35,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArgumentsSetter.cs" />
+    <Compile Include="EnergySource.cs" />
+    <Compile Include="MaxCapacityExceededException.cs" />
+    <Compile Include="Motorcycle.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="Electric.cs" />
+    <Compile Include="Fuel.cs" />
+    <Compile Include="TestProgram.cs" />
+    <Compile Include="Truck.cs" />
+    <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleInWorkshop.cs" />
+    <Compile Include="VehicleWorkshop.cs" />
+    <Compile Include="Wheel.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
