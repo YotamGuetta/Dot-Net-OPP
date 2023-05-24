@@ -39,6 +39,11 @@ namespace Ex03_UI
                     systemIsRunning = activatedChosenFunction(chosenFunction);
                 }
 
+                catch (FormatException i_FormatException)
+                {
+                    Console.WriteLine(i_FormatException.Message);
+                }
+
                 catch (ArgumentException i_ArgumentException)
                 {
                     Console.WriteLine(i_ArgumentException.Message);
@@ -51,8 +56,11 @@ namespace Ex03_UI
 
                 finally
                 {
-                    Console.WriteLine("Press any key to continue");
-                    Console.ReadKey();
+                    if (chosenFunction != "8")
+                    {
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                    }
                 }
             }
         }
@@ -107,12 +115,13 @@ namespace Ex03_UI
             }
             else
             {
-                Console.Write("Please enter the vehicle type:");
+                Console.Write("Please enter the vehicle type - ");
+                Console.WriteLine();
                 Array allVehicleTypes = Enum.GetValues(typeof(eVehicleKind));
                 foreach (int i in allVehicleTypes)
                 {
                     eVehicleKind vehicleTypeValue = (eVehicleKind)i;
-                    Console.WriteLine(string.Format("{0}) {1}", i, vehicleTypeValue.ToString()));
+                    Console.WriteLine(string.Format("{0}) {1} ", i, vehicleTypeValue.ToString()));
                 }
                 string vehicleTypeString = Console.ReadLine();
 
@@ -132,7 +141,7 @@ namespace Ex03_UI
                     foreach (string argumentsName in requiredArgumentsNames)
                     {
                         Type objectType = requiredArguments[argumentsName];
-                        Console.Write("Please enter {0}, which has type- {1}", argumentsName, objectType.Name);
+                        Console.Write("Please enter {0}, which has type {1} - ", argumentsName, objectType.Name);
                         string inputValue = Console.ReadLine();
                         bool isEnum;
                         isEnum = objectType.IsEnum;
@@ -161,7 +170,7 @@ namespace Ex03_UI
                                     }
                                     givenArgumentsValues.Add(argumentsName, parsedValue);
                                 }
-                                catch (Exception ex)
+                                catch (Exception i_ex)
                                 {
                                     throw new ArgumentException("Invalid input argument type");
                                 }
@@ -173,7 +182,7 @@ namespace Ex03_UI
 
                 }
             }
-        } 
+        }
 
         private void displayAllVehicles()
         {
@@ -181,48 +190,50 @@ namespace Ex03_UI
             Console.Clear();
             Console.WriteLine("The list of vehicles in the garage - ");
 
-           
 
-                Console.WriteLine("Displaying vehicles according to their condition (please choose 1-3) - ");
-                Console.WriteLine("1) Under repair");
-                Console.WriteLine("2) Repaired");
-                Console.WriteLine("3) Paid");
-                Console.WriteLine("4) Displaying all vehicles");
 
-                string userChoice = Console.ReadLine();
-                eVehicleState vehicleStateDisplay;
-                switch (userChoice)
-                {
-                    case "1":
-                        vehicleStateDisplay = eVehicleState.Fixxing;
-                        break;
-                    case "2":
-                        vehicleStateDisplay = eVehicleState.Fixxed;
+            Console.WriteLine("Displaying vehicles according to their condition (please choose 1-4) - ");
+            Console.WriteLine("1) Under repair");
+            Console.WriteLine("2) Repaired");
+            Console.WriteLine("3) Paid");
+            Console.WriteLine("4) Displaying all vehicles");
+
+            string userChoice = Console.ReadLine();
+            eVehicleState vehicleStateDisplay;
+            switch (userChoice)
+            {
+                case "1":
+                    vehicleStateDisplay = eVehicleState.Fixxing;
                     break;
-                    case "3":
-                        vehicleStateDisplay = eVehicleState.Paid;
+                case "2":
+                    vehicleStateDisplay = eVehicleState.Fixxed;
                     break;
-                    case "4":
+                case "3":
+                    vehicleStateDisplay = eVehicleState.Paid;
+                    break;
+                case "4":
                     vehicleStateDisplay = eVehicleState.NaN;
                     break;
                 default:
-                        throw new FormatException("Invalid menu choice input");
-                }
+                    throw new FormatException("Invalid menu choice input");
+            }
+
             List<string> vehicleFillteredByState;
             if (vehicleStateDisplay.Equals(eVehicleState.NaN))
             {
                 vehicleFillteredByState = m_vehicleManager.GetVehiclesLicencePlatesInWorkshop();
             }
-            else 
+
+            else
             {
                 vehicleFillteredByState = m_vehicleManager.GetVehiclesLicencePlatesInWorkshop(vehicleStateDisplay);
             }
-                Console.WriteLine("The list - ");
-                foreach (string vehicle in vehicleFillteredByState)
-                {
-                    Console.WriteLine("License Number- {0}", vehicle);
-                }
-            
+
+            Console.WriteLine("The license numbers list - ");
+            foreach (string vehicle in vehicleFillteredByState)
+            {
+                Console.WriteLine("License Number- {0}", vehicle);
+            }
         }
 
         private void changeVehicleStatus()
@@ -230,17 +241,27 @@ namespace Ex03_UI
             Console.WriteLine("Enter the license plate number of the vehicle - ");
             string licensePlate = Console.ReadLine();
 
-            Console.WriteLine("Enter the new status - ");
-            Console.WriteLine("1. Under repair");
-            Console.WriteLine("2. Repaired");
-            Console.WriteLine("3. Paid");
+            bool DoesVehicleExist = m_vehicleManager.CheckIfVehicleExistInWorkshop(licensePlate);
 
-            if (!int.TryParse(Console.ReadLine(), out int statusOption))
+            if (!DoesVehicleExist)
             {
-                throw new FormatException("Invalid menu choice input");
+                Console.WriteLine("The vehicle doesnt exits in the garage.");
             }
 
-            m_vehicleManager.ChangeVehicleState(licensePlate, (eVehicleState)statusOption);
+            else
+            {
+                Console.WriteLine("Enter the new status (1-3) - ");
+                Console.WriteLine("1. Under repair");
+                Console.WriteLine("2. Repaired");
+                Console.WriteLine("3. Paid");
+
+                if (!int.TryParse(Console.ReadLine(), out int statusOption))
+                {
+                    throw new FormatException("Invalid menu choice input");
+                }
+
+                m_vehicleManager.ChangeVehicleState(licensePlate, (eVehicleState)statusOption);
+            }
         }
 
         private void inflateTirePressure()
@@ -248,27 +269,54 @@ namespace Ex03_UI
             Console.WriteLine("Enter the license plate number of the vehicle - ");
             string licensePlate = Console.ReadLine();
 
-            m_vehicleManager.FillAirInWheelToMax(licensePlate);
+            bool DoesVehicleExist = m_vehicleManager.CheckIfVehicleExistInWorkshop(licensePlate);
+
+            if (!DoesVehicleExist)
+            {
+                Console.WriteLine("The vehicle doesnt exits in the garage.");
+            }
+
+            else
+            {
+                m_vehicleManager.FillAirInWheelToMax(licensePlate);
+            }
         }
 
         private void refuelVehicle()
         {
             Console.WriteLine("Enter the license plate number of the vehicle - ");
             string licensePlate = Console.ReadLine();
-            Console.WriteLine("Enter the Fuel Kind - ");
-            if (!eFuelKind.TryParse(Console.ReadLine(), out eFuelKind fuelKind))
-            {
-                throw new FormatException("Invalid fuel amount input");
-            }
-            Console.WriteLine("Enter the amount of fuel to refuel (in liters) - ");
-            if (!float.TryParse(Console.ReadLine(), out float fuelAmount))
-            {
-                throw new FormatException("Invalid fuel amount input");
-            }
-            
-            m_vehicleManager.FuelUpVehcle(licensePlate, fuelKind, fuelAmount);
 
+            bool DoesVehicleExist = m_vehicleManager.CheckIfVehicleExistInWorkshop(licensePlate);
 
+            if (!DoesVehicleExist)
+            {
+                Console.WriteLine("The vehicle doesnt exits in the garage.");
+            }
+
+            else
+            {
+                Console.WriteLine("Enter the Fuel Kind - ");
+                if (!eFuelKind.TryParse(Console.ReadLine(), out eFuelKind fuelKind))
+                {
+                    throw new FormatException("Invalid fuel amount input");
+                }
+                Console.WriteLine("Enter the amount of fuel to refuel (in liters) - ");
+                if (!float.TryParse(Console.ReadLine(), out float fuelAmount))
+                {
+                    throw new FormatException("Invalid fuel amount input");
+                }
+
+                try
+                {
+                    m_vehicleManager.FuelUpVehcle(licensePlate, fuelKind, fuelAmount);
+                }
+
+                catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+                {
+                    Console.WriteLine(i_ValueOutOfRangeException.Message);
+                }
+            }
         }
 
         private void chargeElectricVehicle()
@@ -276,16 +324,31 @@ namespace Ex03_UI
             Console.WriteLine("Enter the license plate number of the vehicle -");
             string licensePlate = Console.ReadLine();
 
-            Console.WriteLine("Enter the duration of charging (in minutes) - ");
-            if (!int.TryParse(Console.ReadLine(), out int chargingTime))
+               bool DoesVehicleExist = m_vehicleManager.CheckIfVehicleExistInWorkshop(licensePlate);
+
+            if (!DoesVehicleExist)
             {
-                throw new FormatException("Invalid fuel amount input");
+                Console.WriteLine("The vehicle doesnt exits in the garage.");
             }
 
+            else
+            {
+                Console.WriteLine("Enter the duration of charging (in minutes) - ");
+                if (!int.TryParse(Console.ReadLine(), out int chargingTime))
+                {
+                    throw new FormatException("Invalid fuel amount input");
+                }
 
-            m_vehicleManager.ChargeUpVehcle(licensePlate, chargingTime);
+                try
+                {
+                    m_vehicleManager.ChargeUpVehcle(licensePlate, chargingTime);
+                }
 
-
+                catch (ValueOutOfRangeException i_ValueOutOfRangeException)
+                {
+                    Console.WriteLine(i_ValueOutOfRangeException.Message);
+                }
+            }
         }
 
         private void displayVehicleDetails()
@@ -293,12 +356,23 @@ namespace Ex03_UI
             Console.WriteLine("Enter the license plate number of the vehicle - ");
             string licensePlate = Console.ReadLine();
 
-            Dictionary<string, object> vehicleData = m_vehicleManager.GetVehcleData(licensePlate);
-            List<string> vehicleDataNames = new List<string>(vehicleData.Keys);
+            bool DoesVehicleExist = m_vehicleManager.CheckIfVehicleExistInWorkshop(licensePlate);
 
-            foreach (string name in vehicleDataNames)
+            if (!DoesVehicleExist)
             {
-                Console.WriteLine("{0} - {1}", name, vehicleData[name].ToString());
+                Console.WriteLine("The vehicle doesnt exits in the garage.");
+            }
+
+            else
+            {
+                Dictionary<string, object> vehicleData = m_vehicleManager.GetVehcleData(licensePlate);
+                List<string> vehicleDataNames = new List<string>(vehicleData.Keys);
+
+                Console.WriteLine("The vehicle details - ");
+                foreach (string name in vehicleDataNames)
+                {
+                    Console.WriteLine("{0} - {1} ", name, vehicleData[name].ToString());
+                }
             }
         }
     }
