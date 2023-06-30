@@ -20,7 +20,7 @@ namespace GameSettings
 
         public GameSettingsForm()
         {
-            initializeControls();
+            InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -29,84 +29,173 @@ namespace GameSettings
             Text = "Game Settings";
         }
 
-        private void initializeControls()
+        private void InitializeComponent()
         {
-            m_labelPlayers = new Label();
-            m_labelPlayers.Text = "Players:";
-            m_labelPlayers.Location = new Point(20, 20);
-            m_labelPlayers.AutoSize = true;
+            this.m_labelPlayers = new System.Windows.Forms.Label();
+            this.m_labelPlayer1 = new System.Windows.Forms.Label();
+            this.m_textBoxPlayer1 = new System.Windows.Forms.TextBox();
+            this.m_checkBoxPlayer2 = new System.Windows.Forms.CheckBox();
+            this.m_textBoxPlayer2 = new System.Windows.Forms.TextBox();
+            this.m_labelBoardSize = new System.Windows.Forms.Label();
+            this.m_labelRows = new System.Windows.Forms.Label();
+            this.m_numericUpDownRows = new System.Windows.Forms.NumericUpDown();
+            this.m_labelCols = new System.Windows.Forms.Label();
+            this.m_numericUpDownCols = new System.Windows.Forms.NumericUpDown();
+            this.m_buttonStart = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownRows)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownCols)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // m_labelPlayers
+            // 
+            this.m_labelPlayers.AutoSize = true;
+            this.m_labelPlayers.Location = new System.Drawing.Point(17, 23);
+            this.m_labelPlayers.Name = "m_labelPlayers";
+            this.m_labelPlayers.Size = new System.Drawing.Size(64, 20);
+            this.m_labelPlayers.TabIndex = 0;
+            this.m_labelPlayers.Text = "Players:";
+            // 
+            // m_labelPlayer1
+            // 
+            this.m_labelPlayer1.AutoSize = true;
+            this.m_labelPlayer1.Location = new System.Drawing.Point(29, 57);
+            this.m_labelPlayer1.Name = "m_labelPlayer1";
+            this.m_labelPlayer1.Size = new System.Drawing.Size(69, 20);
+            this.m_labelPlayer1.TabIndex = 1;
+            this.m_labelPlayer1.Text = "Player 1:";
+            // 
+            // m_textBoxPlayer1
+            // 
+            this.m_textBoxPlayer1.Location = new System.Drawing.Point(127, 54);
+            this.m_textBoxPlayer1.Name = "m_textBoxPlayer1";
+            this.m_textBoxPlayer1.Size = new System.Drawing.Size(151, 26);
+            this.m_textBoxPlayer1.TabIndex = 2;
+            // 
+            // m_checkBoxPlayer2
+            // 
+            this.m_checkBoxPlayer2.AutoSize = true;
+            this.m_checkBoxPlayer2.Location = new System.Drawing.Point(26, 98);
+            this.m_checkBoxPlayer2.Name = "m_checkBoxPlayer2";
+            this.m_checkBoxPlayer2.Size = new System.Drawing.Size(95, 24);
+            this.m_checkBoxPlayer2.TabIndex = 3;
+            this.m_checkBoxPlayer2.Text = "Player 2:";
+            this.m_checkBoxPlayer2.CheckedChanged += new System.EventHandler(this.m_checkBoxPlayer2_CheckedChanged);
+            // 
+            // m_textBoxPlayer2
+            // 
+            this.m_textBoxPlayer2.Enabled = false;
+            this.m_textBoxPlayer2.Location = new System.Drawing.Point(127, 96);
+            this.m_textBoxPlayer2.Name = "m_textBoxPlayer2";
+            this.m_textBoxPlayer2.Size = new System.Drawing.Size(151, 26);
+            this.m_textBoxPlayer2.TabIndex = 4;
+            this.m_textBoxPlayer2.Text = "[Computer]";
+            // 
+            // m_labelBoardSize
+            // 
+            this.m_labelBoardSize.AutoSize = true;
+            this.m_labelBoardSize.Location = new System.Drawing.Point(17, 140);
+            this.m_labelBoardSize.Name = "m_labelBoardSize";
+            this.m_labelBoardSize.Size = new System.Drawing.Size(91, 20);
+            this.m_labelBoardSize.TabIndex = 5;
+            this.m_labelBoardSize.Text = "Board Size:";
+            // 
+            // m_labelRows
+            // 
+            this.m_labelRows.AutoSize = true;
+            this.m_labelRows.Location = new System.Drawing.Point(29, 172);
+            this.m_labelRows.Name = "m_labelRows";
+            this.m_labelRows.Size = new System.Drawing.Size(53, 20);
+            this.m_labelRows.TabIndex = 6;
+            this.m_labelRows.Text = "Rows:";
+            // 
+            // m_numericUpDownRows
+            // 
+            this.m_numericUpDownRows.Location = new System.Drawing.Point(229, 169);
+            this.m_numericUpDownRows.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.m_numericUpDownRows.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.m_numericUpDownRows.Name = "m_numericUpDownRows";
+            this.m_numericUpDownRows.Size = new System.Drawing.Size(47, 26);
+            this.m_numericUpDownRows.TabIndex = 7;
+            this.m_numericUpDownRows.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.m_numericUpDownRows.ValueChanged += new System.EventHandler(this.rowsNumericUpDown_ValueChanged);
+            // 
+            // m_labelCols
+            // 
+            this.m_labelCols.AutoSize = true;
+            this.m_labelCols.Location = new System.Drawing.Point(173, 172);
+            this.m_labelCols.Name = "m_labelCols";
+            this.m_labelCols.Size = new System.Drawing.Size(44, 20);
+            this.m_labelCols.TabIndex = 8;
+            this.m_labelCols.Text = "Cols:";
+            // 
+            // m_numericUpDownCols
+            // 
+            this.m_numericUpDownCols.Location = new System.Drawing.Point(99, 171);
+            this.m_numericUpDownCols.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.m_numericUpDownCols.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.m_numericUpDownCols.Name = "m_numericUpDownCols";
+            this.m_numericUpDownCols.Size = new System.Drawing.Size(44, 26);
+            this.m_numericUpDownCols.TabIndex = 9;
+            this.m_numericUpDownCols.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.m_numericUpDownCols.ValueChanged += new System.EventHandler(this.colsNumericUpDown_ValueChanged);
+            // 
+            // m_buttonStart
+            // 
+            this.m_buttonStart.Location = new System.Drawing.Point(38, 220);
+            this.m_buttonStart.Name = "m_buttonStart";
+            this.m_buttonStart.Size = new System.Drawing.Size(247, 27);
+            this.m_buttonStart.TabIndex = 10;
+            this.m_buttonStart.Text = "Start";
+            this.m_buttonStart.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // GameSettingsForm
+            // 
+            this.ClientSize = new System.Drawing.Size(317, 273);
+            this.Controls.Add(this.m_labelPlayers);
+            this.Controls.Add(this.m_labelPlayer1);
+            this.Controls.Add(this.m_textBoxPlayer1);
+            this.Controls.Add(this.m_checkBoxPlayer2);
+            this.Controls.Add(this.m_textBoxPlayer2);
+            this.Controls.Add(this.m_labelBoardSize);
+            this.Controls.Add(this.m_labelRows);
+            this.Controls.Add(this.m_numericUpDownRows);
+            this.Controls.Add(this.m_labelCols);
+            this.Controls.Add(this.m_numericUpDownCols);
+            this.Controls.Add(this.m_buttonStart);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "GameSettingsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Game Settings";
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownRows)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownCols)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-            m_labelPlayer1 = new Label();
-            m_labelPlayer1.Text = "Player 1:";
-            m_labelPlayer1.Width = 80;
-            m_labelPlayer1.Location = new Point(m_labelPlayers.Left + 10, m_labelPlayers.Bottom + 5);
-            m_labelPlayer1.AutoSize = true;
-
-            m_textBoxPlayer1 = new TextBox();
-            m_textBoxPlayer1.Location = new Point(m_labelPlayer1.Right + 5, m_labelPlayer1.Top);
-            m_textBoxPlayer1.Width = 100;
-
-            m_checkBoxPlayer2 = new CheckBox();
-            m_checkBoxPlayer2.Text = "Player 2:";
-            m_checkBoxPlayer2.Location = new Point(m_labelPlayer1.Left, m_labelPlayer1.Bottom);
-            m_checkBoxPlayer2.AutoSize = true;
-
-            m_textBoxPlayer2 = new TextBox();
-            m_textBoxPlayer2.Text = "[Computer]";
-            m_textBoxPlayer2.Location = new Point(m_textBoxPlayer1.Left, m_checkBoxPlayer2.Top);
-            m_textBoxPlayer2.Width = 100;
-            m_textBoxPlayer2.Enabled = false;
-            m_checkBoxPlayer2.CheckedChanged += (sender, e) =>
-            {
-                m_textBoxPlayer2.Enabled = m_checkBoxPlayer2.Checked;
-            };
-
-            m_labelBoardSize = new Label();
-            m_labelBoardSize.Text = "Board Size:";
-            m_labelBoardSize.Location = new Point(m_labelPlayers.Left, m_checkBoxPlayer2.Bottom + 20);
-            m_labelBoardSize.AutoSize = true;
-
-            m_labelRows = new Label();
-            m_labelRows.Text = "Rows:";
-            m_labelRows.Location = new Point(m_labelBoardSize.Left + 10, m_labelBoardSize.Bottom + 5);
-            m_labelRows.AutoSize = true;
-
-            m_numericUpDownRows = new NumericUpDown();
-            m_numericUpDownRows.Location = new Point(m_labelRows.Left + 40, m_labelRows.Top);
-            m_numericUpDownRows.Width = 35;
-            m_numericUpDownRows.Minimum = 4;
-            m_numericUpDownRows.Maximum = 10;
-            m_numericUpDownRows.ValueChanged += rowsNumericUpDown_ValueChanged;
-
-            m_labelCols = new Label();
-            m_labelCols.Text = "Cols:";
-            m_labelCols.Location = new Point(m_numericUpDownRows.Left + 70, m_labelRows.Top);
-            m_labelCols.AutoSize = true;
-
-            m_numericUpDownCols = new NumericUpDown();
-            m_numericUpDownCols.Location = new Point(m_labelCols.Left + 40, m_labelRows.Top);
-            m_numericUpDownCols.Width = 35;
-            m_numericUpDownCols.Minimum = 4;
-            m_numericUpDownCols.Maximum = 10;
-            m_numericUpDownCols.ValueChanged += colsNumericUpDown_ValueChanged;
-
-            m_buttonStart = new Button();
-            m_buttonStart.Text = "Start";
-            m_buttonStart.Width = m_numericUpDownCols.Right - m_labelPlayer1.Left;
-            m_buttonStart.Location = new Point(m_labelPlayer1.Left, m_labelRows.Bottom + 20);
-            m_buttonStart.Click += startButton_Click;
-
-            Controls.Add(m_labelPlayers);
-            Controls.Add(m_labelPlayer1);
-            Controls.Add(m_textBoxPlayer1);
-            Controls.Add(m_checkBoxPlayer2);
-            Controls.Add(m_textBoxPlayer2);
-            Controls.Add(m_labelBoardSize);
-            Controls.Add(m_labelRows);
-            Controls.Add(m_numericUpDownRows);
-            Controls.Add(m_labelCols);
-            Controls.Add(m_numericUpDownCols);
-            Controls.Add(m_buttonStart);
         }
 
         private void rowsNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -126,6 +215,11 @@ namespace GameSettings
         private void startButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void m_checkBoxPlayer2_CheckedChanged(object sender, EventArgs e)
+        {
+            m_textBoxPlayer2.Enabled = m_checkBoxPlayer2.Checked;
         }
     }
 }
